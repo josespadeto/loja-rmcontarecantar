@@ -1,52 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho - RM Contar e Cantar</title>
-    
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <title>Carrinho de Compras — RM ContareCantar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes de Alta Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
-            theme: { extend: { colors: { brand: '#1e293b', accent: '#3b82f6' } } }
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    },
+                    colors: {
+                        'canvas': '#F7F5F0',    /* Fundo Off-White Orgânico */
+                        'surface': '#FFFFFF',   /* Superfície dos Cards */
+                        'ink': '#1A1A1A',       /* Texto Carvão */
+                        'gold': '#C69214',      /* Dourado Sofisticado */
+                        'muted': '#666666',     /* Cinza Neutro */
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen relative">
-    
-    <nav class="bg-brand text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <a href="index.html" class="text-xl font-bold tracking-wider">RM Contar e Cantar</a>
-                <div class="flex items-center space-x-6">
-                    <a href="cart.html" id="cart-btn" aria-label="Abrir carrinho" class="relative group cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent rounded-md p-1">
-                        <svg class="w-6 h-6 hover:text-accent transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center font-bold shadow-sm">0</span>
-                    </a>
+<body class="bg-canvas text-ink font-sans antialiased selection:bg-gold selection:text-white flex flex-col min-h-screen">
+
+    <!-- Header / Barra Superior -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-canvas/90 backdrop-blur-md border-b border-ink/10">
+        <div class="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
+            <a href="index-master.html" class="flex flex-col">
+                <span class="font-serif text-3xl tracking-wider font-bold text-ink">CONTAR&CANTAR</span>
+                <span class="text-[10px] uppercase tracking-[0.3em] text-gold font-semibold">RM ContareCantar</span>
+            </a>
+
+            <div class="flex items-center gap-6">
+                <a href="index-master.html" class="text-xs font-semibold tracking-widest uppercase text-muted hover:text-ink transition">← Continuar Comprando</a>
+                <div class="flex items-center gap-2 bg-surface border border-ink/10 px-4 py-2 rounded-full shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider">Itens</span>
+                    <span id="cart-count" class="bg-gold text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <header class="mb-8 border-b border-gray-200 pb-4">
-            <h1 class="text-3xl font-extrabold text-gray-900">Seu Carrinho</h1>
-        </header>
+    <!-- Conteúdo Principal do Carrinho -->
+    <main class="max-w-7xl mx-auto px-8 pt-36 pb-24 w-full flex-grow">
+        <div class="mb-12 border-b border-ink/10 pb-6">
+            <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase block mb-2">Sua Seleção</span>
+            <h1 class="font-serif text-4xl md:text-5xl text-ink">Carrinho de Compras</h1>
+        </div>
 
-        <div id="cart-container" class="flex flex-col lg:flex-row gap-8">
-            <div class="w-full text-center py-12 text-gray-400">Carregando carrinho...</div>
+        <div id="cart-content-container" class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            <!-- Os itens do carrinho e o resumo serão injetados dinamicamente aqui -->
         </div>
     </main>
 
-    <footer class="bg-white border-t border-gray-200 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-gray-500">
-            &copy; 2026 RM Contar e Cantar.
+    <!-- Rodapé -->
+    <footer class="bg-[#111111] text-white py-12 px-8 mt-auto border-t border-ink/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-white/40 tracking-widest">
+            <p>&copy; 2026 RM ContareCantar. Todos os direitos reservados.</p>
+            <p class="mt-2 md:mt-0">Arquitetura Estética e Alta Performance Jamstack.</p>
         </div>
     </footer>
 
+    <!-- Container Toast -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
+    <!-- Script de Gestão do Carrinho -->
     <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartPage();
+            updateCartCount();
+        });
+
+        function renderCartPage() {
+            const container = document.getElementById('cart-content-container');
+            if (!container) return;
+
+            let cart = JSON.parse(localStorage.getItem('rm_cart')) || [];
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-3 text-center py-20 bg-surface rounded-3xl border border-ink/10 shadow-sm">
+                        <h2 class="font-serif text-3xl mb-3 text-ink">Seu carrinho está vazio</h2>
+                        <p class="text-muted text-sm mb-8">Explore o acervo cultural e adicione obras exclusivas à sua seleção.</p>
+                        <a href="index-master.html" class="bg-gold text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-ink transition-colors">Voltar ao Acervo</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Calcula o valor total
+            let subtotal = cart.reduce((acc, item) => acc + item.price, 0);
+
+            let itemsHTML = cart.map((item, index) => `
+                <div class="flex items-center gap-4 bg-surface p-4 rounded-2xl border border-ink/10 shadow-sm">
+                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-xl bg-canvas">
+                    <div class="flex-grow">
+                        <h3 class="font-serif text-xl text-ink">${item.name}</h3>
+                        <span class="text-xs text-muted block mb-2">${item.category || 'Obra Exclusiva'}</span>
+                        <div class="font-bold text-ink">${formatPrice(item.price)}</div>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-muted hover:text-red-600 transition p-2" title="Remover item">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </button>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="lg:col-span-2 flex flex-col gap-4">
+                    ${itemsHTML}
+                </div>
+                <div class="bg-surface p-8 rounded-3xl border border-ink/10 shadow-sm sticky top-32">
+                    <h3 class="font-serif text-2xl text-ink mb-6 pb-4 border-b border-ink/10">Resumo do Pedido</h3>
+                    
+                    <div class="flex justify-between mb-4 text-sm">
+                        <span class="text-muted">Subtotal</span>
+                        <span class="font-bold text-ink">${formatPrice(subtotal)}</span>
+                    </div>
+                    <div class="flex justify-between mb-6 text-sm pb-4 border-b border-ink/10">
+                        <span class="text-muted">Frete (Borda Digital)</span>
+                        <span class="font-bold text-gold uppercase text-xs">Grátis</span>
+                    </div>
+                    
+                    <div class="flex justify-between mb-8 text-lg font-bold">
+                        <span class="text-ink">Total</span>
+                        <span class="text-ink">${formatPrice(subtotal)}</span>
+                    </div>
+
+                    <button onclick="alert('Simulação de Checkout Concluída com Sucesso! Pedido encaminhado ao servidor seguro.')" class="w-full bg-gold text-white text-center py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-ink transition-colors shadow-md cursor-pointer block mb-3">
+                        Finalizar Pedido Seguro
+                    </button>
+                    <a href="index-master.html" class="block text-center text-xs font-semibold uppercase tracking-widest text-muted hover:text-ink transition py-2">
+                        Continuar Comprando
+                    </a>
+                </div>
+            `;
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('rm_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('rm_cart', JSON.stringify(cart));
+            renderCartPage();
+            updateCartCount();
+            showToast("Item removido do carrinho.");
+        }
+    </script>
 </body>
 </html>

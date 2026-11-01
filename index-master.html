@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RM Acervo — Edição Definitiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes de Alta Performance (Plus Jakarta Sans & Instrument Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    },
+                    colors: {
+                        'canvas': '#0A0A0A',    /* Fundo Dark Luxo */
+                        'surface': '#141414',   /* Superfície dos Cards */
+                        'gold': '#D4AF37',      /* Detalhe Sofisticado */
+                        'muted': '#888888',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-canvas text-white font-sans antialiased selection:bg-gold selection:text-black flex flex-col min-h-screen">
+
+    <!-- Navegação Superior Flutuante -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-canvas/80 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
+            <a href="index-master.html" class="font-serif text-3xl tracking-widest text-white uppercase flex items-center gap-2">
+                RM<span class="text-gold">.</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10 text-xs font-semibold tracking-[0.2em] uppercase text-muted">
+                <a href="#catalogo" class="hover:text-white transition-colors">Coleção</a>
+                <a href="#manifesto" class="hover:text-white transition-colors">Filosofia</a>
+                <a href="#experiencia" class="hover:text-white transition-colors">O Acervo</a>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="cart.html" class="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full hover:bg-white/10 transition group">
+                    <span class="text-xs font-bold tracking-widest uppercase">Carrinho</span>
+                    <span id="cart-count" class="bg-gold text-black text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Imersivo -->
+    <header class="relative pt-40 pb-24 px-8 max-w-7xl mx-auto w-full min-h-[90vh] flex flex-col justify-center items-center text-center">
+        <!-- Brilho de Fundo Sutil -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-8">
+                <span>✦</span> Arquitetura Estética 2026
+            </div>
+            
+            <h1 class="font-serif text-7xl md:text-9xl tracking-tight leading-[0.9] mb-8">
+                A Poética do <br><span class="italic text-gold font-normal">Som Impresso.</span>
+            </h1>
+            
+            <p class="text-muted text-lg md:text-xl font-light mb-12 max-w-xl mx-auto leading-relaxed">
+                Uma experiência visual e tátil dedicada à preservação e ao colecionismo da música popular e da era de ouro cultural.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#catalogo" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-gold transition-colors">
+                    Explorar Obras
+                </a>
+                <a href="#manifesto" class="w-full sm:w-auto border border-white/20 text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-colors">
+                    Nossa Visão
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção de Métricas / Manifesto Rápido -->
+    <section id="manifesto" class="border-y border-white/10 bg-surface/50 py-16 px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+                <h3 class="font-serif text-4xl text-gold mb-2">01. Rigor Histórico</h3>
+                <p class="text-muted text-sm leading-relaxed">Cada item do acervo passa por uma curadoria documental profunda, unindo fatos e crônicas autênticas.</p>
+            </div>
+            <div>
+                <h3 class="font-serif text-4xl text-gold mb-2">02. Alta Performance</h3>
+                <p class="text-muted text-sm leading-relaxed">Desenvolvido em Jamstack pura, entregando navegação instantânea sem carregamentos pesados.</p>
+            </div>
+            <div>
+                <h3 class="font-serif text-4xl text-gold mb-2">03. Edições Limitadas</h3>
+                <p class="text-muted text-sm leading-relaxed">Tiragens restritas e numeradas para colecionadores que valorizam a exclusividade física.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vitrine Principal (Injetada pelo app.js) -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-8 py-32 w-full flex-grow">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+                <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase block mb-3">Catálogo Oficial</span>
+                <h2 class="font-serif text-5xl md:text-6xl">O Acervo Disponível</h2>
+            </div>
+            <p class="text-muted text-sm max-w-sm">Adicione os itens ao carrinho e experimente o fluxo completo de simulação de compra.</p>
+        </div>
+        
+        <!-- O container padrão exigido pelo app.js -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </main>
+
+    <!-- Rodapé Minimalista -->
+    <footer class="border-t border-white/10 py-16 px-8 bg-surface">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <span class="font-serif text-2xl tracking-widest uppercase text-white">RM Contar e Cantar</span>
+                <p class="text-muted text-xs mt-2">Laboratório de Engenharia e Design Front-End.</p>
+            </div>
+            <div class="flex items-center gap-8 text-xs text-muted tracking-widest uppercase">
+                <a href="#" class="hover:text-white transition">Privacidade</a>
+                <a href="#" class="hover:text-white transition">Termos</a>
+                <a href="#" class="hover:text-white transition">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Container Toast -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

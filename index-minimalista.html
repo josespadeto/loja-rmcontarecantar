@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Minimalista - Laboratório</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { 
+                fontFamily: { 
+                    sans: ['Inter', 'sans-serif'],
+                    serif: ['Playfair Display', 'serif']
+                } 
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-black antialiased selection:bg-gray-200">
+    
+    <!-- Navegação Invisível -->
+    <nav class="w-full py-8 px-6 lg:px-12 flex justify-between items-center border-b border-gray-100">
+        <a href="#" class="text-2xl font-serif font-bold tracking-tighter">RM.</a>
+        <div class="flex gap-8 text-sm font-semibold tracking-widest uppercase">
+            <a href="#" class="hover:text-gray-500 transition">Catálogo</a>
+            <a href="#" class="hover:text-gray-500 transition">História</a>
+            <a href="cart.html" class="hover:text-gray-500 transition flex gap-2">
+                Cart (<span id="cart-count">0</span>)
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section Editorial -->
+    <header class="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2">
+            <h1 class="text-5xl lg:text-7xl font-serif font-bold leading-tight mb-8">
+                A essência<br>da música.
+            </h1>
+            <p class="text-xl text-gray-500 font-light max-w-md mb-10">
+                Uma curadoria silenciosa e precisa dos maiores momentos da nossa história sonora.
+            </p>
+            <a href="#produtos" class="border-b-2 border-black pb-1 text-sm font-bold uppercase tracking-widest hover:text-gray-500 hover:border-gray-500 transition">
+                Descobrir Coleção
+            </a>
+        </div>
+        <div class="lg:w-1/2 w-full aspect-square bg-gray-100 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200" alt="Editorial" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90">
+        </div>
+    </header>
+
+    <!-- Grid de Produtos com Espaçamento Amplo -->
+    <main id="produtos" class="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+        <div class="flex justify-between items-end mb-16 border-b border-gray-100 pb-4">
+            <h2 class="text-2xl font-serif font-bold">Acervo Selecionado</h2>
+        </div>
+        
+        <!-- O motor app.js injetará os produtos aqui -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16"></div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Internacional - RM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importando fontes de padrão internacional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'], // Fonte moderna e limpa para leitura
+                        serif: ['Cinzel', 'serif'],      // Fonte clássica e elegante para títulos
+                    },
+                    colors: {
+                        'paper': '#F7F5F0',     // Off-white orgânico
+                        'ink': '#1A1A1A',       // Preto carvão suave
+                        'accent': '#8C3D2B',    // Terracota (lembra madeira, instrumentos, brasilidade)
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-paper text-ink font-sans antialiased selection:bg-accent selection:text-white flex flex-col min-h-screen">
+
+    <!-- Navegação Glassmorphism (Minimalista) -->
+    <nav class="fixed w-full z-50 bg-paper/80 backdrop-blur-lg border-b border-ink/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index-internacional.html" class="font-serif text-2xl font-bold tracking-widest text-ink">
+                RM ACERVO
+            </a>
+            
+            <div class="flex items-center gap-8">
+                <a href="#colecao" class="hidden md:block text-sm font-bold uppercase tracking-widest hover:text-accent transition">A Coleção</a>
+                <a href="#manifesto" class="hidden md:block text-sm font-bold uppercase tracking-widest hover:text-accent transition">Manifesto</a>
+                
+                <!-- Botão de Carrinho Refinado -->
+                <a href="cart.html" class="flex items-center gap-2 group">
+                    <div class="relative">
+                        <svg class="w-6 h-6 text-ink group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Editorial (Estilo Magazine) -->
+    <header class="pt-32 pb-16 px-6 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 z-10">
+            <p class="text-accent font-bold tracking-[0.2em] uppercase text-sm mb-4">Curadoria Especial</p>
+            <h1 class="font-serif text-6xl lg:text-7xl leading-[1.1] mb-6">
+                Som, Arte e<br>
+                <span class="italic text-ink/70">Memória.</span>
+            </h1>
+            <p class="text-lg text-ink/60 mb-10 max-w-md font-light leading-relaxed">
+                Peças exclusivas e edições de colecionador para quem entende que a música popular é o maior patrimônio da nossa história.
+            </p>
+            <a href="#colecao" class="inline-flex items-center gap-4 bg-ink text-paper px-8 py-4 uppercase tracking-widest text-sm font-bold hover:bg-accent transition-colors duration-500">
+                Explorar Acervo
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+        </div>
+        
+        <div class="lg:w-1/2 w-full relative">
+            <div class="aspect-[4/5] lg:aspect-square overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1603048297172-c92544798d5e?q=80&w=1000" alt="Disco de Vinil" class="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s] ease-out">
+            </div>
+            <!-- Selo decorativo -->
+            <div class="absolute -bottom-8 -left-8 bg-paper p-4 rounded-full border border-ink/10 hidden md:block">
+                <div class="w-24 h-24 rounded-full border border-ink flex items-center justify-center text-center font-serif text-xs uppercase tracking-widest animate-[spin_10s_linear_infinite]">
+                    Edição Limitada •
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Gatilhos de Confiança (Inspiração do Famms Model) -->
+    <section class="border-y border-ink/10 bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-ink/10">
+                
+                <div class="flex flex-col items-center p-4">
+                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path></svg>
+                    <h3 class="font-serif font-bold text-lg mb-2">Envio Seguro</h3>
+                    <p class="text-sm text-ink/60 max-w-[200px]">Embalagens reforçadas para proteger itens de colecionador até sua casa.</p>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"></path></svg>
+                    <h3 class="font-serif font-bold text-lg mb-2">Qualidade Premium</h3>
+                    <p class="text-sm text-ink/60 max-w-[200px]">Vinis de 180g e impressões de alto padrão validadas por historiadores.</p>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path></svg>
+                    <h3 class="font-serif font-bold text-lg mb-2">Transação Protegida</h3>
+                    <p class="text-sm text-ink/60 max-w-[200px]">Pagamento criptografado de ponta a ponta em ambiente blindado.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Área de Produtos (A vitrine injetada pelo app.js) -->
+    <main id="colecao" class="max-w-7xl mx-auto px-6 py-24 w-full flex-grow">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl mb-4">A Coleção</h2>
+            <div class="w-16 h-1 bg-accent mx-auto"></div>
+        </div>
+        
+        <!-- O grid original mantido para perfeita integração com o app.js -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </main>
+
+    <!-- Footer Moderno com Newsletter -->
+    <footer class="bg-ink text-paper pt-20 pb-10 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+            <div>
+                <h3 class="font-serif text-2xl mb-6">Assine o Manifesto.</h3>
+                <p class="text-paper/60 mb-6 max-w-sm">Receba crônicas exclusivas, bastidores do rádio e acesso antecipado a novos itens do acervo.</p>
+                <form class="flex border-b border-paper/30 pb-2 max-w-md">
+                    <input type="email" placeholder="Seu melhor e-mail" class="bg-transparent w-full focus:outline-none placeholder-paper/30 text-paper">
+                    <button type="button" class="text-accent font-bold uppercase tracking-widest text-sm hover:text-white transition">Assinar</button>
+                </form>
+            </div>
+            <div class="flex gap-16 md:justify-end">
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs text-paper/40 mb-6">Navegação</h4>
+                    <ul class="space-y-4 text-paper/80">
+                        <li><a href="#" class="hover:text-accent transition">Catálogo</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Nossa História</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-xs text-paper/40 mb-6">Políticas</h4>
+                    <ul class="space-y-4 text-paper/80">
+                        <li><a href="#" class="hover:text-accent transition">Trocas</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-accent transition">Termos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-paper/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-paper/40 tracking-widest">
+            <p>&copy; 2026 RM ACERVO.</p>
+            <p class="mt-4 md:mt-0">Laboratório de Alta Performance Jamstack.</p>
+        </div>
+    </footer>
+
+    <!-- Container de Notificações Toast -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

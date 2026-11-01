@@ -1,57 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto - RM Acervo</title>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <title>Detalhes da Obra — RM ContareCantar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes de Alta Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
-            theme: { 
-                extend: { 
-                    colors: { brand: '#0f172a', accent: '#2563eb', highlight: '#f59e0b' },
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
-                } 
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    },
+                    colors: {
+                        'canvas': '#F7F5F0',    /* Fundo Off-White Orgânico */
+                        'surface': '#FFFFFF',   /* Superfície dos Cards */
+                        'ink': '#1A1A1A',       /* Texto Carvão */
+                        'gold': '#C69214',      /* Dourado Sofisticado */
+                        'muted': '#666666',     /* Cinza Neutro */
+                    }
+                }
             }
         }
     </script>
-    <style>.glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); }</style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
-    
-    <!-- Navegação -->
-    <nav class="glass-nav text-white shadow-xl sticky top-0 z-50 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-                    <span class="bg-accent w-8 h-8 rounded-lg flex items-center justify-center">🎵</span> RM Acervo
+<body class="bg-canvas text-ink font-sans antialiased selection:bg-gold selection:text-white flex flex-col min-h-screen">
+
+    <!-- Header / Barra Superior -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-canvas/90 backdrop-blur-md border-b border-ink/10">
+        <div class="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
+            <a href="index-master.html" class="flex flex-col">
+                <span class="font-serif text-3xl tracking-wider font-bold text-ink">CONTAR&CANTAR</span>
+                <span class="text-[10px] uppercase tracking-[0.3em] text-gold font-semibold">RM ContareCantar</span>
+            </a>
+
+            <div class="flex items-center gap-6">
+                <a href="index-master.html" class="text-xs font-semibold tracking-widest uppercase text-muted hover:text-ink transition">← Voltar ao Acervo</a>
+                <a href="cart.html" class="flex items-center gap-2 bg-surface border border-ink/10 px-4 py-2 rounded-full hover:border-gold transition shadow-sm group">
+                    <svg class="w-4 h-4 text-ink group-hover:text-gold transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="text-xs font-bold uppercase tracking-wider">Carrinho</span>
+                    <span id="cart-count" class="bg-gold text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
                 </a>
-                <div class="flex items-center space-x-6">
-                    <a href="cart.html" id="cart-btn" class="relative group cursor-pointer focus:outline-none p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition">
-                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-highlight text-brand rounded-full text-xs w-5 h-5 flex items-center justify-center font-black shadow-lg">0</span>
-                    </a>
-                </div>
             </div>
         </div>
     </nav>
 
-    <!-- O JS vai injetar os detalhes do produto aqui dentro -->
-    <main id="product-container" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
-        <div class="animate-pulse flex space-x-4">
-            <div class="flex-1 space-y-6 py-1"><div class="h-96 bg-gray-200 rounded-2xl"></div></div>
+    <!-- Detalhes do Produto -->
+    <main class="max-w-7xl mx-auto px-8 pt-36 pb-24 w-full flex-grow">
+        <div id="product-detail-container" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Conteúdo injetado via JavaScript -->
+            <div class="animate-pulse bg-surface h-[400px] rounded-3xl"></div>
+            <div class="animate-pulse bg-surface h-[400px] rounded-3xl"></div>
         </div>
     </main>
 
-    <footer class="bg-brand text-gray-400 py-12 border-t border-gray-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h3 class="text-white text-xl font-bold mb-4">RM Contar e Cantar</h3>
-            <p class="text-sm">&copy; 2026. Laboratório de Aprendizado.</p>
+    <!-- Rodapé -->
+    <footer class="bg-[#111111] text-white py-12 px-8 mt-auto border-t border-ink/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-white/40 tracking-widest">
+            <p>&copy; 2026 RM ContareCantar. Todos os direitos reservados.</p>
+            <p class="mt-2 md:mt-0">Arquitetura Estética e Alta Performance Jamstack.</p>
         </div>
     </footer>
 
+    <!-- Container Toast -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Script de Captura e Exibição do Produto -->
     <script src="app.js"></script>
+    <script>
+        // Função executada especificamente na página de detalhes
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+
+            const container = document.getElementById('product-detail-container');
+            if (!container) return;
+
+            // Busca o produto na base de dados unificada do app.js
+            const product = products.find(p => p.id === productId);
+
+            if (!product) {
+                container.innerHTML = `
+                    <div class="col-span-2 text-center py-20">
+                        <h2 class="font-serif text-4xl mb-4 text-ink">Obra não encontrada</h2>
+                        <p class="text-muted text-sm mb-8">O item selecionado pode ter sido removido ou o link está incorreto.</p>
+                        <a href="index-master.html" class="bg-gold text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest">Voltar ao Acervo</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Renderiza os detalhes completos do produto com alto padrão estético
+            container.innerHTML = `
+                <div class="bg-surface rounded-3xl overflow-hidden border border-ink/10 shadow-lg aspect-[4/3] relative">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase block mb-3">${product.category}</span>
+                    <h1 class="font-serif text-4xl md:text-6xl text-ink mb-6">${product.name}</h1>
+                    <p class="text-muted text-base leading-relaxed mb-8">${product.description}</p>
+                    
+                    <div class="bg-surface p-6 rounded-2xl border border-ink/10 shadow-sm mb-8">
+                        <span class="text-xs uppercase tracking-widest text-muted block mb-1">Investimento do Colecionador</span>
+                        <div class="text-4xl font-bold text-ink">${formatPrice(product.price)}</div>
+                        <span class="text-[11px] text-muted block mt-1">Frete calculado no checkout • Tiragem limitada</span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="addToCart('${product.id}')" class="flex-1 bg-gold text-white text-center py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-ink transition-colors shadow-md cursor-pointer">
+                            Adicionar ao Carrinho
+                        </button>
+                        <a href="cart.html" onclick="addToCart('${product.id}')" class="flex-1 border border-ink/20 text-ink text-center py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-ink hover:text-white transition-colors">
+                            Comprar Agora
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
 </body>
 </html>

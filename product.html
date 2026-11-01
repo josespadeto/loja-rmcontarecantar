@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - RM Acervo</title>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { 
+                extend: { 
+                    colors: { brand: '#0f172a', accent: '#2563eb', highlight: '#f59e0b' },
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+                } 
+            }
+        }
+    </script>
+    <style>.glass-nav { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); }</style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    
+    <!-- Navegação -->
+    <nav class="glass-nav text-white shadow-xl sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                    <span class="bg-accent w-8 h-8 rounded-lg flex items-center justify-center">🎵</span> RM Acervo
+                </a>
+                <div class="flex items-center space-x-6">
+                    <a href="cart.html" id="cart-btn" class="relative group cursor-pointer focus:outline-none p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition">
+                        <svg class="w-6 h-6 text-gray-300 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-highlight text-brand rounded-full text-xs w-5 h-5 flex items-center justify-center font-black shadow-lg">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- O JS vai injetar os detalhes do produto aqui dentro -->
+    <main id="product-container" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        <div class="animate-pulse flex space-x-4">
+            <div class="flex-1 space-y-6 py-1"><div class="h-96 bg-gray-200 rounded-2xl"></div></div>
+        </div>
+    </main>
+
+    <footer class="bg-brand text-gray-400 py-12 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-white text-xl font-bold mb-4">RM Contar e Cantar</h3>
+            <p class="text-sm">&copy; 2026. Laboratório de Aprendizado.</p>
+        </div>
+    </footer>
+
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+    <script src="app.js"></script>
+</body>
+</html>

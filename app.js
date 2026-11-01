@@ -32,8 +32,8 @@ const DeckStoreApp = (() => {
         const container = document.getElementById('toast-container');
         if (!container) return;
         const toast = document.createElement('div');
-        toast.className = `${isError ? 'bg-red-600' : 'bg-brand'} text-white px-6 py-4 rounded-xl shadow-2xl transform transition-all duration-300 opacity-0 translate-y-4 font-medium flex items-center gap-3 border ${isError ? 'border-red-500' : 'border-gray-700'}`;
-        toast.innerHTML = `<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> ${message}`;
+        toast.className = `${isError ? 'bg-red-600' : 'bg-surface border border-gold/30'} text-white px-6 py-4 rounded-xl shadow-2xl transform transition-all duration-300 opacity-0 translate-y-4 font-medium flex items-center gap-3`;
+        toast.innerHTML = `<svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> ${message}`;
         
         container.appendChild(toast);
         requestAnimationFrame(() => {
@@ -47,7 +47,7 @@ const DeckStoreApp = (() => {
         }, 3000);
     };
 
-    // --- RENDERIZAÇÃO DA VITRINE (index.html) ---
+    // --- RENDERIZAÇÃO DA VITRINE (Com botões permanentemente visíveis) ---
     const renderProducts = () => {
         const grid = document.getElementById('product-grid');
         if (!grid) return;
@@ -55,20 +55,29 @@ const DeckStoreApp = (() => {
         
         products.forEach(product => {
             const article = document.createElement('article');
-            article.className = "group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col transform hover:-translate-y-2";
+            article.className = "group bg-surface rounded-2xl shadow-xl overflow-hidden border border-white/10 flex flex-col transform transition-all duration-300 hover:border-gold/50";
             
-            // O card inteiro agora é um link para a product.html
             article.innerHTML = `
-                <a href="product.html?id=${product.id}" class="block relative overflow-hidden aspect-[4/3]">
-                    <img src="${product.image}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-colors duration-300"></div>
+                <a href="product.html?id=${product.id}" class="block relative overflow-hidden aspect-[4/3] bg-black/40">
+                    <img src="${product.image}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                 </a>
-                <div class="p-6 flex flex-col flex-grow">
-                    <a href="product.html?id=${product.id}"><h3 class="text-xl font-bold mb-2 text-gray-900 leading-tight hover:text-accent transition">${product.name}</h3></a>
-                    <p class="text-sm text-gray-500 mb-6 flex-grow leading-relaxed line-clamp-2">${product.description}</p>
-                    <div class="flex flex-col mt-auto gap-4">
-                        <span class="text-2xl font-black text-brand">${formatPrice(product.price)}</span>
-                        <a href="product.html?id=${product.id}" class="w-full bg-accent text-white px-4 py-3 rounded-xl font-bold hover:bg-blue-600 transition-all text-center">Ver Detalhes</a>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <a href="product.html?id=${product.id}">
+                            <h3 class="font-serif text-2xl mb-3 text-white hover:text-gold transition-colors">${product.name}</h3>
+                        </a>
+                        <p class="text-muted text-sm mb-6 leading-relaxed line-clamp-2">${product.description}</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 pt-4 border-t border-white/10 mt-auto">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase tracking-widest text-muted">Valor</span>
+                            <span class="text-2xl font-bold text-white">${formatPrice(product.price)}</span>
+                        </div>
+                        <!-- Botão fixo e sempre visível -->
+                        <a href="product.html?id=${product.id}" class="w-full bg-white text-black text-center py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-gold transition-colors block">
+                            Ver Detalhes da Obra
+                        </a>
                     </div>
                 </div>
             `;
@@ -81,43 +90,35 @@ const DeckStoreApp = (() => {
         const container = document.getElementById('product-container');
         if (!container) return;
 
-        // Pega o ID da URL (ex: ?id=RM-EBK-01)
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
         const product = products.find(p => p.id === productId);
 
         if (!product) {
-            container.innerHTML = `<div class="text-center py-20"><h2 class="text-2xl font-bold">Produto não encontrado</h2><a href="index.html" class="text-accent mt-4 inline-block">Voltar ao Acervo</a></div>`;
+            container.innerHTML = `<div class="text-center py-32"><h2 class="font-serif text-3xl mb-4 text-white">Obra não encontrada</h2><a href="index-master.html" class="text-gold underline text-sm tracking-widest uppercase">Voltar ao Acervo</a></div>`;
             return;
         }
 
         container.innerHTML = `
-            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
-                <!-- Imagem Gigante -->
-                <div class="lg:w-1/2">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-                        <img src="${product.image}" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2 w-full">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-[4/3] bg-surface">
+                        <img src="${product.image}" class="w-full h-full object-cover">
                     </div>
                 </div>
                 
-                <!-- Detalhes e Compra -->
-                <div class="lg:w-1/2 flex flex-col justify-center">
-                    <span class="text-highlight font-bold tracking-widest text-sm uppercase mb-3">Edição Limitada</span>
-                    <h1 class="text-4xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight">${product.name}</h1>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">${product.description}</p>
+                <div class="lg:w-1/2 w-full flex flex-col justify-center">
+                    <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase mb-4 block">Edição de Colecionador</span>
+                    <h1 class="font-serif text-5xl lg:text-6xl text-white mb-6 leading-tight">${product.name}</h1>
+                    <p class="text-muted text-base lg:text-lg mb-8 leading-relaxed font-light">${product.description}</p>
                     
-                    <div class="text-5xl font-black text-brand mb-10">${formatPrice(product.price)}</div>
+                    <div class="text-4xl font-bold text-white mb-10">${formatPrice(product.price)}</div>
                     
-                    <div class="flex gap-4">
-                        <input type="number" id="qty-input" value="1" min="1" class="w-24 px-4 py-4 border-2 border-gray-200 rounded-xl text-center text-xl font-bold focus:border-accent focus:outline-none transition">
-                        <button id="add-to-cart-btn" class="flex-grow bg-accent text-white px-8 py-4 rounded-xl font-bold text-xl hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="number" id="qty-input" value="1" min="1" class="w-full sm:w-28 px-4 py-4 bg-surface border border-white/20 rounded-xl text-center text-xl font-bold text-white focus:border-gold focus:outline-none transition">
+                        <button id="add-to-cart-btn" class="flex-grow bg-gold text-black px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-lg">
                             Adicionar ao Carrinho
                         </button>
-                    </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-gray-200 flex items-center gap-4 text-sm text-gray-500">
-                        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        <span>Pagamento Seguro e Processamento Imediato no Laboratório.</span>
                     </div>
                 </div>
             </div>
@@ -129,11 +130,10 @@ const DeckStoreApp = (() => {
             if (existingItem) existingItem.qty += qty;
             else cart.push({ ...product, qty: qty });
             saveCart();
-            showToast(`${qty}x "${product.name}" adicionado!`);
+            showToast(`${qty}x "${product.name}" adicionado ao carrinho!`);
         });
     };
 
-    // --- CARRINHO & CHECKOUT (Restante do Código Mantido, apenas Simulador no Final) ---
     const changeQuantity = (productId, delta) => {
         const item = cart.find(item => item.id === productId);
         if (item) {
@@ -141,7 +141,7 @@ const DeckStoreApp = (() => {
             if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
             saveCart();
             renderCart();
-            renderCheckoutSummary(); // Atualiza se estiver no checkout
+            renderCheckoutSummary();
         }
     };
 
@@ -157,7 +157,7 @@ const DeckStoreApp = (() => {
         if (!container) return;
         container.innerHTML = '';
         if (cart.length === 0) {
-            container.innerHTML = `<div class="w-full text-center py-20 bg-white rounded-2xl shadow-sm border border-gray-100"><p class="text-gray-500 text-lg mb-6">Seu carrinho está vazio.</p><a href="index.html" class="bg-accent text-white px-8 py-3 rounded-full font-bold hover:bg-blue-600 transition">&larr; Voltar ao Acervo</a></div>`;
+            container.innerHTML = `<div class="w-full text-center py-24 bg-surface rounded-3xl border border-white/10"><p class="text-muted text-lg mb-6">Seu carrinho está vazio.</p><a href="index-master.html" class="bg-white text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-gold transition">&larr; Voltar ao Acervo</a></div>`;
             return;
         }
         let subtotal = 0;
@@ -169,14 +169,14 @@ const DeckStoreApp = (() => {
             const itemTotal = item.price * item.qty;
             subtotal += itemTotal;
             const itemCard = document.createElement('div');
-            itemCard.className = "flex flex-col sm:flex-row items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100 gap-4";
+            itemCard.className = "flex flex-col sm:flex-row items-center justify-between bg-surface p-6 rounded-2xl border border-white/10 gap-4";
             itemCard.innerHTML = `
-                <div class="flex items-center gap-4 w-full sm:w-auto"><img src="${item.image}" class="w-20 h-20 rounded-lg object-cover shadow-sm">
-                <div><h4 class="font-bold text-gray-900">${item.name}</h4><span class="text-sm text-gray-500">${formatPrice(item.price)} un.</span></div></div>
+                <div class="flex items-center gap-4 w-full sm:w-auto"><img src="${item.image}" class="w-20 h-20 rounded-xl object-cover border border-white/10">
+                <div><h4 class="font-serif text-xl text-white">${item.name}</h4><span class="text-xs text-muted tracking-widest uppercase">${formatPrice(item.price)} un.</span></div></div>
                 <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                <div class="flex items-center bg-gray-50 border border-gray-200 rounded-lg"><button class="btn-minus px-4 py-2 hover:bg-gray-200 rounded-l-lg transition font-bold text-gray-600">-</button><span class="px-4 font-bold text-gray-800">${item.qty}</span><button class="btn-plus px-4 py-2 hover:bg-gray-200 rounded-r-lg transition font-bold text-gray-600">+</button></div>
-                <div class="font-black text-gray-900 min-w-[6rem] text-right text-lg">${formatPrice(itemTotal)}</div>
-                <button class="btn-remove text-gray-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div>
+                <div class="flex items-center bg-black/40 border border-white/20 rounded-xl"><button class="btn-minus px-4 py-2 hover:bg-white/10 rounded-l-xl transition font-bold text-white">-</button><span class="px-4 font-bold text-white">${item.qty}</span><button class="btn-plus px-4 py-2 hover:bg-white/10 rounded-r-xl transition font-bold text-white">+</button></div>
+                <div class="font-bold text-white min-w-[6rem] text-right text-lg">${formatPrice(itemTotal)}</div>
+                <button class="btn-remove text-muted hover:text-red-400 p-2 rounded-lg transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div>
             `;
             itemCard.querySelector('.btn-minus').addEventListener('click', () => changeQuantity(item.id, -1));
             itemCard.querySelector('.btn-plus').addEventListener('click', () => changeQuantity(item.id, 1));
@@ -187,10 +187,10 @@ const DeckStoreApp = (() => {
         const summaryWrapper = document.createElement('div');
         summaryWrapper.className = "lg:w-1/3";
         summaryWrapper.innerHTML = `
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-                <h3 class="text-xl font-black border-b border-gray-100 pb-4 mb-6 text-gray-900">Resumo da Compra</h3>
-                <div class="flex justify-between mb-8 text-xl"><span class="text-gray-600">Total:</span><span class="font-black text-brand">${formatPrice(subtotal)}</span></div>
-                <a href="checkout.html" class="block w-full bg-accent text-white text-center px-4 py-4 rounded-xl font-bold text-lg hover:bg-blue-600 hover:shadow-lg transition">Avançar para Pagamento</a>
+            <div class="bg-surface p-8 rounded-3xl border border-white/10 sticky top-32">
+                <h3 class="font-serif text-2xl border-b border-white/10 pb-4 mb-6 text-white">Resumo da Compra</h3>
+                <div class="flex justify-between mb-8 text-xl"><span class="text-muted text-sm uppercase tracking-widest">Total</span><span class="font-bold text-white">${formatPrice(subtotal)}</span></div>
+                <a href="checkout.html" class="block w-full bg-gold text-black text-center px-4 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white transition">Avançar para Pagamento</a>
             </div>
         `;
         fragment.appendChild(itemsWrapper);
@@ -202,7 +202,7 @@ const DeckStoreApp = (() => {
         const itemsContainer = document.getElementById('checkout-items');
         const totalContainer = document.getElementById('checkout-total');
         if (!itemsContainer || !totalContainer) return;
-        if (cart.length === 0) { window.location.href = "index.html"; return; }
+        if (cart.length === 0) { window.location.href = "index-master.html"; return; }
 
         let subtotal = 0;
         itemsContainer.innerHTML = '';
@@ -210,12 +210,11 @@ const DeckStoreApp = (() => {
             subtotal += item.price * item.qty;
             const row = document.createElement('div');
             row.className = "flex justify-between items-center";
-            row.innerHTML = `<span class="flex-grow text-gray-600 font-medium">${item.qty}x ${item.name}</span><span class="font-bold text-gray-900">${formatPrice(item.price * item.qty)}</span>`;
+            row.innerHTML = `<span class="flex-grow text-muted text-sm">${item.qty}x ${item.name}</span><span class="font-bold text-white">${formatPrice(item.price * item.qty)}</span>`;
             itemsContainer.appendChild(row);
         });
         totalContainer.textContent = formatPrice(subtotal);
 
-        // Simulador de Formulário (Ignora validação de CPF real para fluidez de teste)
         const form = document.getElementById('checkout-form');
         if(form) {
             form.addEventListener('submit', (e) => {
@@ -225,34 +224,38 @@ const DeckStoreApp = (() => {
         }
     };
 
-    // --- SIMULADOR DE SUCESSO (Sem Vercel/Sem Mercado Pago) ---
     const processPaymentMock = () => {
         const overlay = document.getElementById('loading-overlay');
         const btn = document.getElementById('btn-pay');
         
-        btn.disabled = true;
-        overlay.classList.remove('hidden');
-        setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        if(btn) btn.disabled = true;
+        if(overlay) {
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        }
 
-        // Finge que está pensando por 2 segundos
         setTimeout(() => {
-            overlay.classList.add('opacity-0');
-            setTimeout(() => overlay.classList.add('hidden'), 300);
+            if(overlay) {
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
             
-            // Esvazia o carrinho e joga pra Home com mensagem de sucesso
             localStorage.removeItem('rm_cart');
             cart = [];
             
-            document.querySelector('main').innerHTML = `
-                <div class="text-center py-32">
-                    <div class="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            const mainContent = document.querySelector('main');
+            if(mainContent) {
+                mainContent.innerHTML = `
+                    <div class="text-center py-32">
+                        <div class="w-24 h-24 bg-gold/10 text-gold rounded-full flex items-center justify-center mx-auto mb-8 border border-gold/30">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h1 class="font-serif text-5xl text-white mb-4">Simulação Concluída</h1>
+                        <p class="text-muted text-lg mb-8 max-w-md mx-auto">O fluxo do laboratório estático funcionou perfeitamente. Os dados simulados foram processados.</p>
+                        <a href="index-master.html" class="bg-white text-black px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-gold transition inline-block">Retornar ao Acervo</a>
                     </div>
-                    <h1 class="text-5xl font-black text-gray-900 mb-4">Pagamento Simulado!</h1>
-                    <p class="text-xl text-gray-500 mb-8">No mundo real, o cliente receberia um e-mail agora.</p>
-                    <a href="index.html" class="bg-brand text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition">Voltar ao Início</a>
-                </div>
-            `;
+                `;
+            }
             updateCartCount();
         }, 2000);
     };
@@ -261,7 +264,7 @@ const DeckStoreApp = (() => {
         init: () => {
             initCart();
             renderProducts(); 
-            renderProductPage(); // Chama a nova lógica
+            renderProductPage();
             renderCart();     
             renderCheckoutSummary();
         }

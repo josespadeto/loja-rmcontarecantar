@@ -29,6 +29,14 @@
             }
         }
     </script>
+    <style>
+        /* Estilo dedicado para garantir o carregamento perfeito do fundo hero */
+        .hero-background {
+            background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body class="bg-canvas text-white font-sans antialiased selection:bg-gold selection:text-black flex flex-col min-h-screen">
 
@@ -54,12 +62,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section com Background CSS Real (Cobre 100% da área perfeitamente) -->
-    <header class="relative w-full min-h-[90vh] flex items-center justify-center text-center px-8 overflow-hidden bg-canvas bg-[url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920')] bg-cover bg-center">
+    <!-- Hero Section com Background CSS Dedicado -->
+    <header class="relative w-full min-h-[90vh] flex items-center justify-center text-center px-8 overflow-hidden hero-background">
         
-        <!-- Camada de Sobreposição Escura (Overlay) para destacar o texto -->
-        <div class="absolute inset-0 bg-canvas/80 backdrop-blur-[2px]"></div>
-
         <!-- Conteúdo Centralizado por Cima do Fundo -->
         <div class="relative z-10 max-w-3xl mx-auto py-24">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-8 backdrop-blur-md">

@@ -20,11 +20,11 @@
                         serif: ['Instrument Serif', 'serif'],
                     },
                     colors: {
-                        'canvas': '#F7F5F0',    /* Fundo Off-White Orgânico */
-                        'surface': '#FFFFFF',   /* Superfície dos Cards */
-                        'ink': '#1A1A1A',       /* Texto Carvão */
-                        'gold': '#C69214',      /* Dourado Sofisticado */
-                        'muted': '#666666',     /* Cinza Neutro */
+                        'canvas': '#F7F5F0',
+                        'surface': '#FFFFFF',
+                        'ink': '#1A1A1A',
+                        'gold': '#C69214',
+                        'muted': '#666666',
                     }
                 }
             }
@@ -59,7 +59,7 @@
         </div>
 
         <div id="cart-content-container" class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            <!-- Os itens do carrinho e o resumo serão injetados dinamicamente aqui -->
+            <!-- Os itens serão carregados aqui -->
         </div>
     </main>
 
@@ -74,7 +74,7 @@
     <!-- Container Toast -->
     <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- Script de Gestão do Carrinho -->
+    <!-- Script Centralizado -->
     <script src="app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -99,7 +99,6 @@
                 return;
             }
 
-            // Calcula o valor total
             let subtotal = cart.reduce((acc, item) => acc + item.price, 0);
 
             let itemsHTML = cart.map((item, index) => `
@@ -110,7 +109,7 @@
                         <span class="text-xs text-muted block mb-2">${item.category || 'Obra Exclusiva'}</span>
                         <div class="font-bold text-ink">${formatPrice(item.price)}</div>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-muted hover:text-red-600 transition p-2" title="Remover item">
+                    <button onclick="removeFromCart(${index})" class="text-muted hover:text-red-600 transition p-2 cursor-pointer" title="Remover item">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                     </button>
                 </div>

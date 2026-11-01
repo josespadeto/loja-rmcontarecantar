@@ -2,7 +2,7 @@
 // RM ContareCantar - Script Principal da Loja
 // ==========================================
 
-// Base de dados do acervo cultural (Discos, Livros e Edições Limitadas)
+// Base de dados do acervo cultural
 const products = [
     {
         id: "RM-001",
@@ -52,7 +52,6 @@ function renderProducts() {
 
     products.forEach(product => {
         const article = document.createElement('article');
-        // Garantindo classes limpas com fundo branco e visibilidade total do texto
         article.className = "group bg-surface rounded-2xl shadow-md overflow-hidden border border-ink/10 flex flex-col card-editorial";
         
         article.innerHTML = `
@@ -62,7 +61,6 @@ function renderProducts() {
             <div class="p-6 flex flex-col flex-grow justify-between">
                 <div>
                     <a href="product.html?id=${product.id}">
-                        <!-- TÍTULO FORÇADO COM TEXT-INK (Carvão escuro) para visibilidade permanente -->
                         <h3 class="font-serif text-2xl mb-2 text-ink hover:text-gold transition-colors">${product.name}</h3>
                     </a>
                     <p class="text-muted text-xs mb-4 leading-relaxed line-clamp-2">${product.description}</p>
@@ -84,12 +82,11 @@ function renderProducts() {
     });
 }
 
-// Função simulada de Adicionar ao Carrinho com Toast
+// Adiciona o produto ao carrinho e atualiza os contadores
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    // Recupera carrinho atual do localStorage ou cria array vazio
     let cart = JSON.parse(localStorage.getItem('rm_cart')) || [];
     cart.push(product);
     localStorage.setItem('rm_cart', JSON.stringify(cart));
@@ -98,13 +95,13 @@ function addToCart(productId) {
     showToast(`"${product.name}" foi adicionado ao carrinho!`);
 }
 
-// Atualiza o contador de itens no cabeçalho
+// Atualiza o contador de itens no cabeçalho de qualquer página
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('rm_cart')) || [];
-    const badge = document.getElementById('cart-count');
-    if (badge) {
+    const badges = document.querySelectorAll('#cart-count');
+    badges.forEach(badge => {
         badge.textContent = cart.length;
-    }
+    });
 }
 
 // Sistema de Alertas Toast Flutuantes
@@ -125,7 +122,7 @@ function showToast(message) {
     }, 3500);
 }
 
-// Inicializa as funções ao carregar a página
+// Inicializador global
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartCount();

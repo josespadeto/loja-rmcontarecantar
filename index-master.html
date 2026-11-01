@@ -30,7 +30,6 @@
         }
     </script>
     <style>
-        /* Estilo dedicado para garantir o carregamento perfeito do fundo hero */
         .hero-background {
             background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920');
             background-size: cover;
@@ -62,28 +61,28 @@
         </div>
     </nav>
 
-    <!-- Hero Section com Background CSS Dedicado -->
-    <header class="relative w-full min-h-[90vh] flex items-center justify-center text-center px-8 overflow-hidden hero-background">
+    <!-- Hero Section Compacto e Elegante (Altura reduzida para melhor visibilidade imediata) -->
+    <header class="relative w-full min-h-[60vh] lg:min-h-[65vh] flex items-center justify-center text-center px-8 pt-32 pb-20 overflow-hidden hero-background">
         
-        <!-- Conteúdo Centralizado por Cima do Fundo -->
-        <div class="relative z-10 max-w-3xl mx-auto py-24">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-8 backdrop-blur-md">
+        <!-- Conteúdo Centralizado -->
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-6 backdrop-blur-md">
                 <span>✦</span> Arquitetura Estética 2026
             </div>
             
-            <h1 class="font-serif text-6xl md:text-8xl tracking-tight leading-[0.95] mb-8 text-white">
+            <h1 class="font-serif text-5xl md:text-7xl tracking-tight leading-[0.95] mb-6 text-white">
                 A Poética do <br><span class="italic text-gold font-normal">Som Impresso.</span>
             </h1>
             
-            <p class="text-muted text-lg md:text-xl font-light mb-12 max-w-xl mx-auto leading-relaxed">
+            <p class="text-muted text-base md:text-lg font-light mb-8 max-w-xl mx-auto leading-relaxed">
                 Uma experiência visual e tátil dedicada à preservação e ao colecionismo da música popular e da era de ouro cultural.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#catalogo" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-gold transition-colors">
+                <a href="#catalogo" class="w-full sm:w-auto bg-white text-black px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-gold transition-colors">
                     Explorar Obras
                 </a>
-                <a href="#manifesto" class="w-full sm:w-auto border border-white/20 text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-colors">
+                <a href="#manifesto" class="w-full sm:w-auto border border-white/20 text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white/5 transition-colors">
                     Nossa Visão
                 </a>
             </div>
@@ -109,7 +108,7 @@
     </section>
 
     <!-- Vitrine Principal (Injetada pelo app.js) -->
-    <main id="catalogo" class="max-w-7xl mx-auto px-8 py-32 w-full flex-grow">
+    <main id="catalogo" class="max-w-7xl mx-auto px-8 py-24 w-full flex-grow">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
                 <span class="text-gold text-xs font-bold tracking-[0.3em] uppercase block mb-3">Catálogo Oficial</span>

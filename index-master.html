@@ -1,23 +1,20 @@
-<!-- Hero Section Imersivo com Imagem de Fundo -->
-    <header class="relative pt-40 pb-24 px-8 max-w-7xl mx-auto w-full min-h-[90vh] flex flex-col justify-center items-center text-center overflow-hidden rounded-3xl my-6">
+<!-- Hero Section Corrigido (Background Imersivo Perfeito) -->
+    <header class="relative w-full min-h-[85vh] flex items-center justify-center text-center px-8 overflow-hidden bg-canvas">
         
-        <!-- Imagem de Fundo com Sobreposição Escura (Overlay) -->
-        <div class="absolute inset-0 z-0">
-            <!-- Você pode trocar o link do Unsplash pela imagem oficial do seu acervo em rmcontarecantar.art.br -->
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920" alt="Fundo Acervo MPB" class="w-full h-full object-cover opacity-25 scale-105 animate-pulse duration-[10000ms]">
-            <!-- Gradiente para escurecer as bordas e mesclar com o fundo preto -->
-            <div class="absolute inset-0 bg-gradient-to-b from-canvas via-canvas/80 to-canvas"></div>
+        <!-- Imagem de Fundo Esticada Corretamente (Absolute Fill) -->
+        <div class="absolute inset-0 w-full h-full z-0">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920" alt="Fundo Acervo MPB" class="w-full h-full object-cover opacity-30">
+            <!-- Sobreposição escura para garantir o contraste e legibilidade do texto -->
+            <div class="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/60 to-canvas/40"></div>
         </div>
 
-        <!-- Brilho de Fundo Sutil -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
-
-        <div class="relative z-10 max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-8">
+        <!-- Conteúdo Centralizado por Cima da Imagem -->
+        <div class="relative z-10 max-w-3xl mx-auto py-24">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold tracking-widest uppercase mb-8 backdrop-blur-md">
                 <span>✦</span> Arquitetura Estética 2026
             </div>
             
-            <h1 class="font-serif text-7xl md:text-9xl tracking-tight leading-[0.9] mb-8">
+            <h1 class="font-serif text-6xl md:text-8xl tracking-tight leading-[0.95] mb-8 text-white">
                 A Poética do <br><span class="italic text-gold font-normal">Som Impresso.</span>
             </h1>
             
